@@ -1,31 +1,27 @@
 import React from 'react';
-import {Button} from '@material-ui/core'
-import Modal from '@material-ui/core/Modal';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import {Button} from '@material-ui/core';
 import './style.css'
 
-type Props = {
-    title: string
-    year: string
-    image: string
-    summary:string
-}
+// type Props = {
+//     title: string
+//     year: string
+//     image: string
+// }
 
-const Movie: React.FC<Props> = props => {
-    return <div className="movie">
-        <div className="movieTitle">
-            <h3>{props.title}</h3>
+const BookedMovies: React.FC=() => {
+    return <div className="Bookedmovies">
+        <div className="">
+            <h3>The Terminator</h3>
         </div>
-        <div className="poster">
-            <img src={props.image}/>
+        <div className="BookedPoster">
+            <img src="https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg"/>
         </div>
-        <div>
-            <h3>{props.year}</h3>
+        <div className="">
+        <div className="summary">
+            <p>The Guardians struggle to keep together as a team while dealing with their personal family issues, notably Star-Lord's encounter with his father the ambitious celestial being Ego.</p>
         </div>
-        <div className="bookButton">
-            <Button variant="outlined" color="secondary">Book Movie</Button>
         </div>
     </div>
 }
 
-export default Movie;
+export default BookedMovies;

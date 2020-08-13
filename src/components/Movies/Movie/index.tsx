@@ -1,7 +1,5 @@
 import React from 'react';
-import {Button} from '@material-ui/core'
-import Modal from '@material-ui/core/Modal';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import {Button} from '@material-ui/core';
 import './style.css'
 
 type Props = {

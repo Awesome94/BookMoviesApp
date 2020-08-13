@@ -1,0 +1,40 @@
+/*
+
+.details{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+*/
+
+.BookedPoster{
+    display: flex;
+    margin-left: 20px;
+    margin-right: 20px;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex: 2;
+}
+
+.summary{
+ display: flex;
+ flex-direction: column;
+ height: 50px;
+ width: 24%;
+ justify-content: center;
+ align-self: center;
+ text-align: justify;
+ margin-top: 30px;
+ padding-left: 15px;
+
+} 
+
+.Bookedmovies {
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}

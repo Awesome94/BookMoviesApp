@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
+import { Link } from 'react-router-dom';
 import './style.css'
 
 type Props = {
     movies:any
     setMovies: any
+
 }
 
-const Header: React.FC=()=> {
+const Header: React.FC<Props>=props=> {
 
     const [inputVal, setInputVal] = useState<string>('')
 
@@ -20,10 +22,14 @@ const Header: React.FC=()=> {
         <div className="appHeader">
             <div className="menuItems">
                 <div className="searchMovies">
-                        <p>Movies</p>
+                    <Link to="/">
+                       <p style={{ cursor: 'pointer' }}>Movies</p>
+                    </Link>
                 </div>
                 <div className="viewBookings">
-                        <p>Bookings</p>
+                <Link to="/bookings">
+                    <p style={{ cursor: 'pointer' }}>Bookings</p>
+                </Link>
                 </div>
             </div>
             <form >
