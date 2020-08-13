@@ -7,14 +7,14 @@ type Props = {
     setMovies: any
 }
 
-const Header: React.FC<Props> = props => {
+const Header: React.FC=()=> {
 
     const [inputVal, setInputVal] = useState<string>('')
 
     const updateMovies = (search:string)=>{
         console.log("this is search", search)
         setInputVal(search)
-        props.setMovies(props.movies.filter((movie:any) => movie.title.toLowerCase().includes(search)))
+        // setMovies(movies.filter((movie:any) => movie.title.toLowerCase().includes(search)))
     }
     return (
         <div className="appHeader">

@@ -10,6 +10,10 @@ type Props = {
     image: string
 }
 
+const onClickButton = ()=>{
+    alert("booked")
+}
+
 const Movie: React.FC<Props> = props => {
     return <div className="movie">
         <div className="movieTitle">
@@ -22,7 +26,7 @@ const Movie: React.FC<Props> = props => {
             <h3>{props.year}</h3>
         </div>
         <div className="bookButton">
-            <Button variant="outlined" color="secondary">Book Movie</Button>
+            <Button onClick={(e)=>onClickButton()} variant="outlined" color="secondary">Book Movie</Button>
         </div>
     </div>
 }

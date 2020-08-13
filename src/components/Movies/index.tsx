@@ -21,10 +21,12 @@ type Movie = {
     year: string
 }
 
-const initialValues  = ['Avengers', 'iron man', 'spider man', 'superman']
+const initialValues  = ['Avengers', 'iron man', 'spider','man', 'super', 'term']
 
-const Movies: React.FC<Props> = props => {
-    const [movies, setMovies] = useState([])
+const Movies: React.FC=() => {
+    const [movies, setMovies] = useState<Movie[]>([])
+    // const [tempMovies, setTempMovies] = useState<Movie[]>([])
+
     useEffect(() => {
         const promises = initialValues.map(initialValues => {
             return fetch(` http://www.omdbapi.com?s=${encodeURIComponent(initialValues)}&apikey=${API_KEY}&page=1`)
@@ -40,18 +42,18 @@ const Movies: React.FC<Props> = props => {
 
     }))
 
-        props.setMovies(updatedMovies)
-        props.setTempMovies(updatedMovies)
+        setMovies(updatedMovies)
+        // setTempMovies(updatedMovies)
     })
 },[])
-    if(props.movies.length === 0){
+    if(movies.length === 0){
         return <div className="loader">
             <CircularProgress/>
         </div>
     }
 
     return <div className="movies">
-        {props.movies.map((movie: Movie)=> {
+        {movies.map((movie: Movie)=> {
             return <Movie
                         key={movie.imdbID}
                         title={movie.title}
