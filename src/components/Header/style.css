@@ -1,0 +1,32 @@
+.menuItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+.searchMovies {
+    display: inline-flex;
+    margin: 30px;
+    color: red ;
+    font-size: 20px;
+}
+
+.viewBookings{
+    display: inline-flex;
+    margin: 30px;
+    font-size: 20px;
+    color: hotpink;
+}
+input{
+    height: 50px;
+    width: 50%;
+    margin-left: 10px;
+    border-color: pink;
+    background-color: transparent;
+    color: #9d9fb0;
+    font-size: 20px;
+    font-weight: lighter;
+    margin-top: 10px;
+    border-style: groove;
+}
