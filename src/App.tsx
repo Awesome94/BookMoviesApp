@@ -5,17 +5,7 @@ import {Redirect, Router, Route, Switch} from 'react-router-dom';
 import { history } from './helpers/history';
 import HomeScreen from './components/HomeScreen';
 
-
-
-
 import './App.css';
-
-type Movie = {
-  imdbID: string
-  title: string
-  image: string
-  year: string
-}
 
 const App: React.FC=()=>{
   return (

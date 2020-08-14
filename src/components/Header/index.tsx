@@ -48,6 +48,7 @@ const Header: React.FC<Props>=props=> {
     const onSubmitted =  handleSubmit(({searchQuery})=>{
         axios(apiUrl+"&s="+state.s).then(({data})=>{
             console.log(data)
+            props.setMovies(data)
         })
     })
 

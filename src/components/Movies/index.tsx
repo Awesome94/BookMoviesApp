@@ -23,7 +23,7 @@ type Movie = {
 
 const initialValues  = ['Avengers', 'iron man', 'spider','man', 'super', 'term']
 
-const Movies: React.FC=() => {
+const Movies: React.FC<Props>=(props) => {
     const [movies, setMovies] = useState<Movie[]>([])
     // const [tempMovies, setTempMovies] = useState<Movie[]>([])
 
