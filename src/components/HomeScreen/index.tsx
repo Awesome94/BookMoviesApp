@@ -12,6 +12,7 @@ type Movie = {
     year: string
   }
 
+
 const HomeScreen: React.FC=()=>{
     const [movies, setMovies] = useState<Movie[]>([])
     const [tempMovies, setTempMovies] = useState<Movie[]>([])
@@ -22,7 +23,6 @@ const HomeScreen: React.FC=()=>{
         return(
             <div>
                 <Header movies={movies} setMovies={setTempMovies}/>
-                <p>Welcome to bookings</p>
                 <BookedMovies/>
             </div>
         )
@@ -30,8 +30,8 @@ const HomeScreen: React.FC=()=>{
 
         return(
             <div>
-            <Header movies setMovies/>
-            <Movies movies={tempMovies} setMovies={setMovies} setTempMovies={setTempMovies} component = {Movies}/>
+            <Header movies={movies} setMovies={setTempMovies}/>
+            <Movies movies={tempMovies} setMovies={setMovies} setTempMovies={setTempMovies}/>
         </div>
     )
     }

@@ -4,6 +4,9 @@ import {Button} from '@material-ui/core';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { useForm } from "react-hook-form";
+
+import './style.css'
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -36,12 +39,30 @@ const useStyles = makeStyles((theme: Theme) =>
   const body = (
   <Fade in={open}>
       <div className={classes.paper}>
-          <h2 id="simple-modal-title">Text in a modal</h2>
+          <h2 id="simple-modal-title">Book Movie</h2>
           <p id="simple-modal-description">
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            Add Name to be assigned to and number of tickets.
         </p>
-        <Button onClick={handleClose} variant="outlined" color="secondary">Book</Button>
-        <Button onClick={handleClose} variant="outlined" color="secondary">Cancel</Button>
+          <section className="modalContainer">
+            <div className="ModalInput">
+              <form className="nameForm">
+                <label>Name</label>
+                <input className="assignee" />
+              </form>
+              <form className="ticketsForm">
+                <label>Tickets</label> <br/>
+              <input className="noOfTickets" type="number" min="1" placeholder="0"/>
+              </form>
+            </div>
+        <div className="modalButtons">
+          <div className="bookBtn">
+            <Button onClick={handleClose} variant="outlined" color="secondary">Book</Button>
+          </div>
+          <div className="closeBtn">
+            <Button onClick={handleClose} variant="outlined" color="secondary">Cancel</Button>
+          </div>
+        </div>
+          </section>
     </div>
   </Fade>
   );

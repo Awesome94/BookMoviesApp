@@ -1,40 +1,27 @@
-/*
-
-.details{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-bottom: 10px;
-}
-*/
-
-.BookedPoster{
-    display: flex;
-    margin-left: 20px;
-    margin-right: 20px;
-    align-content: center;
-    align-items: center;
-    flex-direction: column;
-    flex: 2;
+.BookedPoster {
+    padding-top: 10px;
+    width: 65% !important;
+    margin: 67px auto 0px;
 }
 
-.summary{
- display: flex;
- flex-direction: column;
- height: 50px;
- width: 24%;
- justify-content: center;
- align-self: center;
- text-align: justify;
- margin-top: 30px;
- padding-left: 15px;
+.Thumbnail {
+    width: 10%;
+    height: 15vh
+}
 
-} 
+.Summary {
+    width: 40%;
+}
 
-.Bookedmovies {
-    display: flex;
-    padding: 20px;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+th {
+    font-weight: bold !important;
+}
+
+@media only screen and (max-width: 64em) { 
+    .Thumbnail, .Thumbtitle {
+        display: none !important;
+    }
+    .Summary {
+        width: 60%;
+    }
 }

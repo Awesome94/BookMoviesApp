@@ -24,8 +24,6 @@ type Movie = {
 const initialValues  = ['Avengers', 'iron man', 'spider','man', 'super', 'term']
 
 const Movies: React.FC<Props>=(props) => {
-    const [movies, setMovies] = useState<Movie[]>([])
-    // const [tempMovies, setTempMovies] = useState<Movie[]>([])
 
     useEffect(() => {
         const promises = initialValues.map(initialValues => {
@@ -42,26 +40,33 @@ const Movies: React.FC<Props>=(props) => {
 
     }))
 
-        setMovies(updatedMovies)
-        // setTempMovies(updatedMovies)
+        props.setMovies(updatedMovies)
+        props.setTempMovies(updatedMovies)
     })
 },[])
-    if(movies.length === 0){
+    if(props.movies && props.movies.length === 0){
         return <div className="loader">
             <CircularProgress/>
         </div>
     }
-
-    return <div className="movies">
-        {movies.map((movie: Movie)=> {
-            return <Movie
-                        key={movie.imdbID}
-                        title={movie.title}
-                        year={movie.year}
-                        image={movie.Poster}
+    if(!props.movies){
+        return <div className="loader">
+           <h3>Oopsie, Sorry Movie not found</h3>
+        </div>
+    }else{
+        return (
+            <div className="movies">
+                {props.movies.flat(2).map((movie: Movie)=> {
+                    return <Movie
+                    key={movie.imdbID}
+                    title={movie.title}
+                    year={movie.year}
+                    image={movie.Poster}
                     />
-        })
+                })
+            }
+        </div>
+        )
     }
-    </div>
 }
 export default Movies;

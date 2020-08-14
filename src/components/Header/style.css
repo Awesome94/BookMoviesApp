@@ -9,7 +9,12 @@
     display: inline-flex;
     margin: 30px;
     color: red ;
-    font-size: 20px;
+    font-size: 20px;   
+}
+
+a {
+    text-decoration: none;
+    color: red;
 }
 
 .viewBookings{
@@ -18,7 +23,20 @@
     font-size: 20px;
     color: hotpink;
 }
-input{
+.auth{
+    display: inline-flex;
+    margin: 30px;
+    font-size: 15px;
+    float: right;
+}
+
+.user{
+    display: inline-flex;
+    margin: 30px;
+    font-size: 15px;
+    float: left;
+}
+.searchbox{
     height: 50px;
     width: 50%;
     margin-left: 10px;
@@ -29,4 +47,5 @@ input{
     font-weight: lighter;
     margin-top: 10px;
     border-style: groove;
+    padding-left: 16px;
 }

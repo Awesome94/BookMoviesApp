@@ -1,0 +1,55 @@
+.modalContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.modalButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 5%;
+}
+
+.closeBtn{
+    display: flex;
+}
+
+.bookBtn{
+    display: flex;
+    
+}
+
+.ModalInput{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.assignee{
+    display: flex;
+    height: 30px;
+    border-color: pink;
+    border-style: groove;
+    margin-top: 10px;
+    font-size: 15px;
+    flex: 2;
+}
+
+.noOfTickets{
+    display: flex;
+    flex: 0.5;
+    height: 30px;
+    border-color: pink;
+    border-style: groove;
+    margin-top: 10px;
+    font-size: 15px;
+    width: 90%;
+}
+
+.nameFor {
+    width: 100%;
+}
+
+.ticketsForm {
+    width: 20%;
+}
