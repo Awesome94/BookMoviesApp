@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import {Button} from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import {history} from '../../../helpers/history';
+import {history} from '../../helpers/history';
 
 import "./styles.css";
 
@@ -13,7 +13,7 @@ type FormData = {
   password: string;
 };
 
-const SignInSignUp =()=>{
+const AuthComponent =()=>{
 
   const { register, handleSubmit, errors } = useForm<FormData>();
   const onSubmit = async (data: any) => {
@@ -49,4 +49,4 @@ const SignInSignUp =()=>{
   );
 }
 
-export default SignInSignUp;
+export default AuthComponent;

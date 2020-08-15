@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {Redirect, Router, Route, Switch} from 'react-router-dom';
 import { history } from './helpers/history';
 import HomeScreen from './components/HomeScreen';
-import SignInComponent from './components/Authentication/Login';
+import AuthComponent from './components/Authentication';
 
 import './App.css';
 
@@ -12,7 +12,7 @@ const App: React.FC=()=>{
     <div className="App">
       <Router history={history}>
         <Switch>
-          <Route path = "/auth" component={SignInComponent}/>
+          <Route path = "/auth" component={AuthComponent}/>
           <Route path="/"component = {HomeScreen}/>
         </Switch>
       </Router>
