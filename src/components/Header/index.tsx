@@ -11,13 +11,6 @@ type Props = {
 
 }
 
-// type Movie = {
-//     imdbID: string
-//     title: string
-//     image: string
-//     year: string
-//   }
-
 type FormData= {
     searchQuery: string;
 }
@@ -45,10 +38,6 @@ const signinSignup = () =>{
 
 const Header: React.FC<Props>=(props)=> {
     const { handleSubmit } = useForm<FormData>();
-    // const [inputVal, setInputVal] = useState<string>('')
-    // const [tempMovies, setTempMovies] = useState<Movie[]>([])
-
-    
     const [state, setState]  = useState({
         s: "",
         results: [],
@@ -59,22 +48,19 @@ const Header: React.FC<Props>=(props)=> {
         target: HTMLInputElement;
       }
 
-    // const updateMovies = (search:string)=>{
-    //     console.log("this is search", search)
-    //     setInputVal(search)
-    // }
     const apiUrl = `${process.env.REACT_APP_OMDBAPI}`
     
     const handleInput = (e:HandleNameChangeInterface) =>{
         let s =e.target.value;
         setState(prevState => {
-            let results = props.movies.filter((movie:any) => movie.title.toLowerCase().includes(s))
+            let results = props.movies.filter((movie:any) => movie.Title.toLowerCase().includes(s))
             props.setMovies(results)
             return {... prevState, s: s}
         });
     }
-    const onSubmitted =  handleSubmit(({searchQuery})=>{
+    const onSubmitted =  handleSubmit(()=>{
         axios(apiUrl+"&s="+state.s).then(({data})=>{
+            console.log("payload tujikutte", data.Search)
             props.setMovies(data.Search)
         })
     })

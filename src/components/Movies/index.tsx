@@ -16,9 +16,9 @@ type Props = {
 type Movie = {
     imdbID: string
     Poster: string
-    title: string
+    Title: string
     image: string
-    year: string
+    Year: string
 }
 
 const initialValues  = ['Avengers', 'iron man', 'spider','man', 'super', 'term']
@@ -34,11 +34,11 @@ const Movies: React.FC<Props>=(props) => {
     Promise.all(promises).then((movies:any) => {
        const updatedMovies:Movie[] = movies.map((movie: any)=> movie.Search).flat(2).map((movie: any)=> 
         ({
-        title: movie.Title,
-        year: movie.Year,
-        Poster: movie.Poster,
-        imdbID: movie.imdbID,
-    }))
+            Title: movie.Title,
+            year: movie.Year,
+            Poster: movie.Poster,
+            imdbID: movie.imdbID,
+        }))
 
         props.setMovies(updatedMovies)
         props.setTempMovies(updatedMovies)
@@ -59,8 +59,8 @@ const Movies: React.FC<Props>=(props) => {
                 {props.movies.flat(2).map((movie: Movie, index:any)=> {
                     return <Movie
                     key={index}
-                    title={movie.title}
-                    year={movie.year}
+                    title={movie.Title}
+                    year={movie.Year}
                     image={movie.Poster}
                     imdbID={movie.imdbID}
                     />
