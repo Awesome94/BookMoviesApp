@@ -1,69 +1,36 @@
-import React, {useState} from 'react'
+import * as React from "react";
+import { render } from "react-dom";
+import { useForm } from "react-hook-form";
+import {Button} from '@material-ui/core';
 
-const SignInComponent =()=> {
-    const username = useFormInput('');
-    const password = useFormInput('');
-  
 
-  const onSignInAction = () => {
-    fetch('http://localhost:5000/api/v1/login', {
-      method: 'post',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({
-        username: username,
-        password: password
-      })
-    })
-    .then(response => response.json())
-    .then(user => {
-        if (user) {
-        //  loadUser(user)
-        //  onRouteChange('home');
-        }
-      })
-  }
+import "./styles.css";
 
-    return (
-      <article className="br3 ba b--black-10 mv4 w-200 w-50-m w-25-1 mw6 shadow-5 center">
-        <main className="pa4 black-80">
-          <div className="measure">
-            <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-              <legend className="f1 fw6 ph0 mh0">SignIn</legend>
-              <div className="mt3">
-                <label className="db fw6 lh-copy f6" htmlFor="full-Name">Username</label>
-                <input className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="text" {...username} placeholder="username" id="username"/>
-              </div>
+type FormData = {
+  firstName: string;
+  lastName: string;
+};
 
-              <div className="mv3">
-                <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
-                <input className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="password" {...password} placeholder="password"
-                  id="password"/>
-              </div>
-            </fieldset>
+export default function App() {
+  const { register, setValue, handleSubmit, errors } = useForm<FormData>();
+  const onSubmit = handleSubmit(({ firstName, lastName }) => {
+    console.log(firstName, lastName);
+  }); // firstName and lastName will have correct type
 
-            <div className="">
-              <input
-                className="b center ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
-                type="submit"
-                value="SignIn"
-                onClick={onSignInAction}
-              />
-            </div>
-          </div>
-        </main>
-      </article>
-    );
+  return (
+    <section className="authContainer">
+      <form className = "siginForm" onSubmit={onSubmit}>
+        <label className="authlabel">Username</label>
+        <input  name="username" ref={register} />
+        <label className="authlabel">Password</label>
+        <input type="password"  name="password" ref={register} />
+      </form>
+      <div  className="authbutton" >
+        <Button variant='outlined'  color="secondary" type="submit">Submit</Button>
+      </div>
+    </section>
+  );
 }
 
-const useFormInput = (initialValue:string) => {
-    const [value, setValue] = useState(initialValue);
-    const handleChange = (e:any) => {
-      setValue(e.target.value);
-    };
-    return {
-      value,
-      onChange: handleChange,
-    };
-  };
-  
-export default SignInComponent;
+const rootElement = document.getElementById("root");
+render(<App />, rootElement);
