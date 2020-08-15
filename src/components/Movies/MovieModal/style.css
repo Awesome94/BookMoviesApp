@@ -24,6 +24,14 @@
     flex-direction: row;
     justify-content: space-between;
 }
+.identifier{
+    align-items: center;
+    text-align: center;
+    font-style: initial;
+    font-family: auto;
+    font-size: 18px;
+    color: forestgreen;
+}
 
 .assignee{
     display: flex;

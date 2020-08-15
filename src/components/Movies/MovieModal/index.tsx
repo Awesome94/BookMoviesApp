@@ -48,12 +48,18 @@ const useStyles = makeStyles((theme: Theme) =>
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [currentMovie, setCurrentMovie] = useState({})
-  const { register, handleSubmit, errors } = useForm<FormData>();
+  const [serverResponse, setServerResponse] = useState('')
+  const { register, handleSubmit, errors } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = data => {
     const payload = {...currentMovie, ...data}
     console.log(payload)
-    axios.post(`${process.env.REACT_APP_API_URL}/book`, payload).then()
+    axios.post(`${process.env.REACT_APP_API_URL}/book`, payload).then((response) => {
+      setServerResponse(response.data.success);
+    }, (error) => {
+      setServerResponse("Request failed !")
+      console.log(error);
+    });
   }
 
   const handleClose = () => {
@@ -87,12 +93,30 @@ const useStyles = makeStyles((theme: Theme) =>
             <div className="ModalInput">
               <div className="nameForm">
                 <label>Name</label>
-                <input className="assignee" name="assignee"ref={register({required: true})}/>
+                <input className="assignee"
+                  name="assignee"
+                  ref={register({
+                    required: true,
+                    pattern: {
+                    value: /^[a-zA-Z]+$/,
+                    message: "Input should only be letters"
+                  }})}/>
+                  <a className="error">{errors.assignee && errors.assignee.message}</a>
               </div>
               <div className="ticketsForm">
                 <label>Tickets</label> <br/>
-              <input className="noOfTickets" name="numberOftickets" type="number" min="1" placeholder="0" ref={register({required: true})}/>
+                <input className="noOfTickets"
+                  name="numberOftickets"
+                  type="number"
+                  min="1"
+                  placeholder="0"
+                  ref={register({required: true
+                })}/>
+                  <a className="error">{errors.numberOftickets && errors.numberOftickets.message}</a>
               </div>
+            </div>
+            <div className="identifier">
+              <p>{serverResponse}</p>
             </div>
         <div className="modalButtons">
           <div className="bookBtn">

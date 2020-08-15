@@ -89,15 +89,13 @@ const toggleAuthButton = () =>{
     <form className = "siginForm" onSubmit={handleSubmit(onSubmit)}>
         <label className="authlabel">Username</label>
         <input className="usernameInput" type="text" placeholder="username" name="username" ref={register({required: true, pattern: {
-            value: /^[AZaz]$/,
+            value: /^[a-zA-Z0-9]+$/,
             message: "Username Should not include special characters"
           }})} />
-        {errors.username && errors.username.message}
+        <a className="error">{errors.username && errors.username.message}</a>
         <label className="authlabel">Password</label>
-        <input className="passwordInput" type="password" placeholder="password" name="password" ref={register({required: true, pattern: {
-            message: "Invalid password"
-          }})} />
-        {errors.password && errors.password.message}
+        <input className="passwordInput" type="password" placeholder="password" name="password" ref={register({required: true})} />
+        <a className="error">{errors.password && errors.password.message}</a>
       <div  className="authbutton" >
         {toggleAuthButton()}
       </div>
