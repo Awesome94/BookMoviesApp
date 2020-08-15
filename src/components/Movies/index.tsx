@@ -36,8 +36,8 @@ const Movies: React.FC<Props>=(props) => {
         ({
         title: movie.Title,
         year: movie.Year,
-        Poster: movie.Poster
-
+        Poster: movie.Poster,
+        imdbID: movie.imdbID,
     }))
 
         props.setMovies(updatedMovies)
@@ -56,12 +56,13 @@ const Movies: React.FC<Props>=(props) => {
     }else{
         return (
             <div className="movies">
-                {props.movies.flat(2).map((movie: Movie)=> {
+                {props.movies.flat(2).map((movie: Movie, index:any)=> {
                     return <Movie
-                    key={movie.imdbID}
+                    key={index}
                     title={movie.title}
                     year={movie.year}
                     image={movie.Poster}
+                    imdbID={movie.imdbID}
                     />
                 })
             }

@@ -11,12 +11,12 @@ type Props = {
 
 }
 
-type Movie = {
-    imdbID: string
-    title: string
-    image: string
-    year: string
-  }
+// type Movie = {
+//     imdbID: string
+//     title: string
+//     image: string
+//     year: string
+//   }
 
 type FormData= {
     searchQuery: string;
@@ -44,9 +44,9 @@ const signinSignup = () =>{
 }
 
 const Header: React.FC<Props>=(props)=> {
-    const { register, setValue, handleSubmit, errors } = useForm<FormData>();
-    const [inputVal, setInputVal] = useState<string>('')
-    const [tempMovies, setTempMovies] = useState<Movie[]>([])
+    const { handleSubmit } = useForm<FormData>();
+    // const [inputVal, setInputVal] = useState<string>('')
+    // const [tempMovies, setTempMovies] = useState<Movie[]>([])
 
     
     const [state, setState]  = useState({
@@ -59,10 +59,10 @@ const Header: React.FC<Props>=(props)=> {
         target: HTMLInputElement;
       }
 
-    const updateMovies = (search:string)=>{
-        console.log("this is search", search)
-        setInputVal(search)
-    }
+    // const updateMovies = (search:string)=>{
+    //     console.log("this is search", search)
+    //     setInputVal(search)
+    // }
     const apiUrl = `${process.env.REACT_APP_OMDBAPI}`
     
     const handleInput = (e:HandleNameChangeInterface) =>{

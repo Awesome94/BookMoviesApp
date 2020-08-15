@@ -13,6 +13,7 @@ const App: React.FC=()=>{
       <Router history={history}>
         <Switch>
           <Route path = "/auth" component={AuthComponent}/>
+          <Route path = "/register" component={AuthComponent}/>
           <Route path="/"component = {HomeScreen}/>
         </Switch>
       </Router>

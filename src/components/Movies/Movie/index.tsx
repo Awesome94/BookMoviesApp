@@ -6,6 +6,8 @@ type Props = {
     title: string;
     year: string;
     image: string;
+    imdbID: string;
+
 }
 
 const Movie: React.FC<Props>=(props)=> {
@@ -20,7 +22,7 @@ const Movie: React.FC<Props>=(props)=> {
             <h3>{props.year}</h3>
         </div>
         <div className="bookButton">
-              <BookMovieModal/>
+              <BookMovieModal movieId={props.imdbID}/>
         </div>
     </div>
     );
