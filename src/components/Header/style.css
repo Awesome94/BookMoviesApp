@@ -49,3 +49,7 @@ a {
     border-style: groove;
     padding-left: 16px;
 }
+
+.userName {
+    text-transform: capitalize;
+    }

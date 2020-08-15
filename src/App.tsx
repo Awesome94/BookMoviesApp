@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import Header from './components/Header';
-import Movies from './components/Movies';
 import {Redirect, Router, Route, Switch} from 'react-router-dom';
 import { history } from './helpers/history';
 import HomeScreen from './components/HomeScreen';
-import SignInComponent from './components/Authentication/Login/signInComponent';
+import SignInComponent from './components/Authentication/Login';
 
 import './App.css';
 

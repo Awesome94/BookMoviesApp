@@ -21,6 +21,27 @@ type Movie = {
 type FormData= {
     searchQuery: string;
 }
+const clearLocal = ()=>{
+    localStorage.clear()
+}
+let currentUser = "Guest"
+const signinSignup = () =>{
+    if(localStorage.getItem('token')){  
+        currentUser= "Logged In as: " + localStorage.getItem('username') ||'david'
+        return(
+            <Link to="/">
+                <p onClick = {(e)=>{clearLocal()}} style={{ cursor: 'pointer' }}>Sign Out</p>
+            </Link>
+        )
+    }else{
+        currentUser = "Guest"
+        return(
+        <Link to="/auth">
+            <p style={{ cursor: 'pointer' }}>Sign In/Up</p>
+        </Link>
+        )
+    }
+}
 
 const Header: React.FC<Props>=(props)=> {
     const { register, setValue, handleSubmit, errors } = useForm<FormData>();
@@ -72,12 +93,10 @@ const Header: React.FC<Props>=(props)=> {
                 </Link>
                 </div>
                 <div className="auth">
-                <Link to="/">
-                    <p style={{ cursor: 'pointer' }}>Sign In/up</p>
-                </Link>
+                {signinSignup()}
                 </div>
                 <div className="user">
-                    <p>Hi Guest</p>
+                    <p className = "userName">{currentUser}</p>
                 </div>
             </div>
             <Search handleInput={handleInput} onSubmitted={onSubmitted}/>
