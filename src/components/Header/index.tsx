@@ -24,7 +24,7 @@ let caption = ""
 const signinSignup = () =>{
     if(localStorage.getItem('token')){  
         caption=""
-        currentUser= "Logged In: " + localStorage.getItem('username') ||'david'
+        currentUser= "Logged In: " + localStorage.getItem('username')
         return(
             <Link to="/">
                 <p onClick = {(e)=>{clearLocal()}} style={{ cursor: 'pointer' }}>Sign Out</p>

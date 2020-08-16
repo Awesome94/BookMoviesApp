@@ -16,18 +16,8 @@ type Props = {
   setselectedMovie:any;
 }
 
-type Movie = {
-  imdbID: string;
-  title: string;
-  image: string;
-  year: string;
-  summary:string;
-  tickets:number;
-}
-
 const BookedMovies: React.FC<Props>=(props) => {
 
-    // let location = useLocation();
     const token = localStorage.getItem('token')
     const config = {
         headers: { Authorization: `Bearer ${token}` }
@@ -42,7 +32,6 @@ const BookedMovies: React.FC<Props>=(props) => {
   },[])
 
     return <TableContainer>
-      {console.log("this is awaeszxZome", props)}
       <Table className="BookedPoster" aria-label="simple table">
         <TableHead>
           <TableRow>

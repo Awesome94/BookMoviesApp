@@ -1,8 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import Header from '../Header';
-import { useLocation } from 'react-router-dom';
 import BookedMovies from '../Movies/BookedMovie';
-import axios from 'axios';
 
 
 type Movie = {
@@ -17,9 +15,7 @@ type Movie = {
   const Booking: React.FC=()=>{
     const [bookedMovie, setBookedMovie] =useState<Movie[]>([])
     const [selectedMovie, setselectedMovie] =useState<Movie[]>([])
-
     
-  
     return(
         <div>
             <Header movies={bookedMovie} setMovies={setselectedMovie}/>

@@ -75,7 +75,8 @@ const useStyles = makeStyles((theme: Theme) =>
        year: movie.Year,
        image: movie.Poster,
        imdbID: movie.imdbID,
-       plot_summary: movie.Plot
+       plot_summary: movie.Plot,
+       username: localStorage.getItem('username'),
    }
    setCurrentMovie(currentMovie)
    }).then(()=>setOpen(true));
