@@ -25,7 +25,6 @@ const BookedMovies: React.FC<Props>=(props) => {
 
     useEffect(() => {
       axios.get(`${process.env.REACT_APP_API_URL}/book/all`,config).then(({data})=>{
-        console.log("mama", data)
         props.setBookedMovie(data)
         props.setselectedMovie(data)
       })

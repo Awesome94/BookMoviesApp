@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from 'react'
-import Movie from './Movie/index';
+import React, {useEffect, useState, useContext} from 'react';
+import StoreContext from '../../App'
+import Movie from './Movie';
 import './style.css';
 import {CircularProgress} from '@material-ui/core';
 
-const API_KEY = '7440eff4';
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 
 type Props = {
@@ -20,10 +21,9 @@ type Movie = {
     Year: string
 }
 
-const initialValues  = ['Avengers', 'iron man', 'spider','man', 'super', 'term']
+const initialValues  = ['Avengers', 'Bad', 'boys','candyman', 'super', 'term']
 
 const Movies: React.FC<Props>=(props) => {
-
     useEffect(() => {
         const promises = initialValues.map(initialValues => {
             return fetch(` http://www.omdbapi.com?s=${encodeURIComponent(initialValues)}&apikey=${API_KEY}&page=1`)
@@ -34,7 +34,7 @@ const Movies: React.FC<Props>=(props) => {
        const updatedMovies:Movie[] = movies.map((movie: any)=> movie.Search).flat(2).map((movie: any)=> 
         ({
             Title: movie.Title,
-            year: movie.Year,
+            Year: movie.Year,
             Poster: movie.Poster,
             imdbID: movie.imdbID,
         }))

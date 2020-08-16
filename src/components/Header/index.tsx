@@ -133,7 +133,7 @@ const Header: React.FC<Props>=(props)=> {
                     <p className = "userName">{currentUser}</p>
                 </div>
             </div>
-            <Search placeholder = {"enter movie title...."} handleInput={handleInput} onSubmitted={onSubmitted}/>
+            <Search placeholder = {"search movie title...."} handleInput={handleInput} onSubmitted={onSubmitted}/>
         </div>
         )
     }

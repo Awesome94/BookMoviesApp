@@ -36,7 +36,7 @@
 .assignee{
     display: flex;
     height: 30px;
-    border-color: pink;
+    border-color: #ddf2ff;
     border-style: groove;
     margin-top: 10px;
     font-size: 15px;
@@ -47,7 +47,7 @@
     display: flex;
     flex: 0.5;
     height: 30px;
-    border-color: pink;
+    border-color: #ddf2ff;
     border-style: groove;
     margin-top: 10px;
     font-size: 15px;

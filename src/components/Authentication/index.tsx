@@ -2,7 +2,6 @@ import * as React from "react";
 import { render } from "react-dom";
 import { useForm } from "react-hook-form";
 import {Button} from '@material-ui/core';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import {history} from '../../helpers/history';
 import { useLocation } from 'react-router-dom';
@@ -16,6 +15,14 @@ type FormData = {
 
 let API_URL = process.env.REACT_APP_API_URL
 
+let serverResponse = ""
+
+
+const onClickToggles = (s:string)=>{
+  serverResponse=""
+  history.push(s)
+}
+
 const AuthComponent =()=>{
   let location = useLocation();
   
@@ -25,7 +32,7 @@ const AuthComponent =()=>{
       return(
       <div>
         <p>New here? Click below to register an account </p>
-        <a style={{ cursor: 'pointer' }} onClick={(e)=>{history.push('/register')} }>Register</a>
+        <a style={{ cursor: 'pointer' }} onClick={(e)=>{onClickToggles('/register')} }>Register</a>
       </div>
       )
     }
@@ -36,7 +43,7 @@ const AuthComponent =()=>{
       <div>
 
       <p>Already have an account?</p>
-      <a style={{ cursor: 'pointer' }} onClick={(e)=>{history.push('/auth')} }>Login</a>
+      <a style={{ cursor: 'pointer' }} onClick={(e)=>{onClickToggles('/auth')}}>Login</a>
       </div>
     )
   }
@@ -63,9 +70,11 @@ const toggleAuthButton = () =>{
         if (data["Success"]){
           history.push('/auth')
           return data
-        }else{
-          history.push('/register')
         }
+      }, (error)=>{
+        history.push('/register')
+        console.log(error.message)
+        serverResponse = "Registration Failed: Incase account exists, Try Login"
       })
     }else{
       await axios.post(`${API_URL}/login/${data.username}/${data.password}`).then(({data})=>{
@@ -74,9 +83,10 @@ const toggleAuthButton = () =>{
           localStorage.setItem('username', data["username"])
           history.push('/')
           return data["Access Token"]
-        }else{
-            history.push('/auth')
         }
+      }, (error:any)=>{
+        serverResponse = "Login Failed. Make confirm credentials and that account exists then try again"
+        console.log(error.message, "finally")
       })
     }
   }
@@ -90,17 +100,18 @@ const toggleAuthButton = () =>{
         <label className="authlabel">Username</label>
         <input className="usernameInput" type="text" placeholder="username" name="username" ref={register({required: true, pattern: {
             value: /^[a-zA-Z0-9]+$/,
-            message: "Username Should not include special characters"
+            message: "Username Should not include spaces and special characters"
           }})} />
         <a className="error">{errors.username && errors.username.message}</a>
         <label className="authlabel">Password</label>
         <input className="passwordInput" type="password" placeholder="password" name="password" ref={register({required: true})} />
-        <a className="error">{errors.password && errors.password.message}</a>
+        <a className="error">{errors.password && "Invalid Input"}</a>
       <div  className="authbutton" >
         {toggleAuthButton()}
       </div>
       </form>
       {authToggle()}
+      <p className="error">{serverResponse}</p>
     </section>
   );
 }

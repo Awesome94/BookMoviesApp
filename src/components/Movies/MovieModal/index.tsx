@@ -99,7 +99,7 @@ const useStyles = makeStyles((theme: Theme) =>
                   ref={register({
                     required: true,
                     pattern: {
-                    value: /^[a-zA-Z]+$/,
+                    value: /^[a-zA-Z\s]+$/,
                     message: "Input should only be letters"
                   }})}/>
                   <a className="error">{errors.assignee && errors.assignee.message}</a>
@@ -121,10 +121,10 @@ const useStyles = makeStyles((theme: Theme) =>
             </div>
         <div className="modalButtons">
           <div className="bookBtn">
-            <Button type="submit" variant="outlined" color="secondary">Book</Button>
+            <Button type="submit" variant="outlined" color="primary">Book</Button>
           </div>
           <div className="closeBtn">
-            <Button onClick={handleClose} variant="outlined" color="secondary">Cancel</Button>
+            <Button onClick={handleClose} variant="outlined" color="primary">Close</Button>
           </div>
         </div>
             </form>
