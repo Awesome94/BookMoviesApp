@@ -43,13 +43,19 @@ a {
     border-color: pink;
     background-color: transparent;
     color: #9d9fb0;
-    font-size: 20px;
-    font-weight: lighter;
+    font-size: 15px;
+    font-weight:lighter;
     margin-top: 10px;
     border-style: groove;
     padding-left: 16px;
+    letter-spacing: 0.5px;
 }
 
 .userName {
     text-transform: capitalize;
     }
+    
+.altText{
+    color: grey;
+    font-weight: 300;
+}

@@ -4,7 +4,6 @@ import './style.css';
 import {CircularProgress} from '@material-ui/core';
 
 const API_KEY = '7440eff4';
-const userID = 'tt3896198';
 
 
 type Props = {
