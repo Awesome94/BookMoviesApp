@@ -1,10 +1,11 @@
-import  React,{useState} from "react";
+import  React,{useState, useContext} from "react";
 import Modal from '@material-ui/core/Modal';
 import {Button} from '@material-ui/core';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { useForm, SubmitHandler } from "react-hook-form";
+import MovieStore from '../../../stores/MovieStore';
 
 import './style.css'
 import axios from "axios";
@@ -45,17 +46,19 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
  const BookMovieModal: React.FC<Props>=(props)=>{
+  const movieStore = useContext(MovieStore)
+  const {currentUserName, addMovieId} =  movieStore;
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [currentMovie, setCurrentMovie] = useState({})
   const [serverResponse, setServerResponse] = useState('')
-  const { register, handleSubmit, errors } = useForm<FormValues>();
+  const { register, handleSubmit, setValue, errors } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = data => {
     const payload = {...currentMovie, ...data}
-    console.log(payload)
     axios.post(`${process.env.REACT_APP_API_URL}/book`, payload).then((response) => {
-      setServerResponse(response.data.success);
+      setServerResponse("Movie booked successfully with Identifier:  " + response.data.success)
+      addMovieId(response.data.success);
     }, (error) => {
       setServerResponse("Request failed !")
       console.log(error);
@@ -76,7 +79,7 @@ const useStyles = makeStyles((theme: Theme) =>
        image: movie.Poster,
        imdbID: movie.imdbID,
        plot_summary: movie.Plot,
-       username: localStorage.getItem('username'),
+       username: currentUserName,
    }
    setCurrentMovie(currentMovie)
    }).then(()=>setOpen(true));
@@ -96,6 +99,7 @@ const useStyles = makeStyles((theme: Theme) =>
                 <label>Name</label>
                 <input className="assignee"
                   name="assignee"
+                  placeholder="Name of ticket owner"
                   ref={register({
                     required: true,
                     pattern: {
@@ -110,7 +114,6 @@ const useStyles = makeStyles((theme: Theme) =>
                   name="numberOftickets"
                   type="number"
                   min="1"
-                  placeholder="0"
                   ref={register({required: true
                 })}/>
                   <a className="error">{errors.numberOftickets && errors.numberOftickets.message}</a>

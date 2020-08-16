@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react';
+import React,{useEffect, useContext} from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -6,6 +6,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import axios from 'axios';
+import MovieStore from '../../../stores/MovieStore';
+
 
 import './style.css'
 
@@ -17,8 +19,10 @@ type Props = {
 }
 
 const BookedMovies: React.FC<Props>=(props) => {
+  const movieStore = useContext(MovieStore)
+  const {userToken} =  movieStore;
 
-    const token = localStorage.getItem('token')
+    const token = userToken
     const config = {
         headers: { Authorization: `Bearer ${token}` }
     };

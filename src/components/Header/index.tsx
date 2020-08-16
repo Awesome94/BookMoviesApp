@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Search from '../Search'
 import './style.css'
 import { useLocation } from 'react-router-dom';
+import MovieStore from '../../stores/MovieStore';
 
 
 type Props = {
@@ -16,32 +17,12 @@ type Props = {
 type FormData= {
     searchQuery: string;
 }
-const clearLocal = ()=>{
-    localStorage.clear()
-}
-let currentUser = "Guest"
+
 let caption = ""
-const signinSignup = () =>{
-    if(localStorage.getItem('token')){  
-        caption=""
-        currentUser= "Logged In: " + localStorage.getItem('username')
-        return(
-            <Link to="/">
-                <p onClick = {(e)=>{clearLocal()}} style={{ cursor: 'pointer' }}>Sign Out</p>
-            </Link>
-        )
-    }else{
-        currentUser = "Guest"
-        caption ="Create an account or Login to manage all your bookings"
-        return(
-        <Link to="/auth">
-            <p style={{ cursor: 'pointer' }}>Sign In/ Sign Up</p>
-        </Link>
-        )
-    }
-}
 
 const Header: React.FC<Props>=(props)=> {
+    const movieStore = useContext(MovieStore)
+    const {currentUserName, setUsername, setUserToken} = movieStore;
     const { handleSubmit } = useForm<FormData>();
     const [state, setState]  = useState({
         s: "",
@@ -50,6 +31,28 @@ const Header: React.FC<Props>=(props)=> {
     })
     let location = useLocation();
 
+    const clearLocal = ()=>{
+        setUserToken("")
+        setUsername("Guest")
+    }
+
+    const signinSignup = (username:string) =>{
+        if (username === "Guest"){
+            caption ="Create an account or Login to manage all your bookings"
+            return(
+            <Link to="/auth">
+                <p style={{ cursor: 'pointer' }}>Sign In/ Sign Up</p>
+            </Link>
+            )
+        }else{
+            caption = ""
+            return(
+            <Link to="/">
+            <p onClick = {(e)=>{clearLocal()}} style={{ cursor: 'pointer' }}>Sign Out</p>
+            </Link>
+            )
+        }
+    }
 
     interface HandleNameChangeInterface {
         target: HTMLInputElement;
@@ -83,10 +86,10 @@ const Header: React.FC<Props>=(props)=> {
                 </Link>
                 </div>
                 <div className="auth">
-                {signinSignup()}
+                {signinSignup(currentUserName)}
                 </div>
                 <div className="user">
-                    <p className = "userName">{currentUser}</p>
+                    <p className = "userName">{currentUserName}</p>
                 </div>
             </div>
             <Search placeholder={"enter booking identifier string e.g tt265412419"} handleInput={handleInput} onSubmitted={onSubmitted}/>
@@ -127,10 +130,10 @@ const Header: React.FC<Props>=(props)=> {
                 </Link>
                 </div>
                 <div className="auth">
-                {signinSignup()}
+                {signinSignup(currentUserName)}
                 </div>
                 <div className="user">
-                    <p className = "userName">{currentUser}</p>
+                    <p className = "userName">{currentUserName}</p>
                 </div>
             </div>
             <Search placeholder = {"search movie title...."} handleInput={handleInput} onSubmitted={onSubmitted}/>
